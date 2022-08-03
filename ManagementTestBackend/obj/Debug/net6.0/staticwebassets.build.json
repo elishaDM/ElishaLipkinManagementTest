@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "t2dQwjQsG5ABLgtxryr6wu+xXnHf7cpHhyOZI4v5DyQ=",
+  "Source": "ManagementTestBackend",
+  "BasePath": "_content/ManagementTestBackend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

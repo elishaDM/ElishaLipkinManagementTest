@@ -1,0 +1,74 @@
+[
+	{
+	  "name": "Shlomo Kardo",
+	  "tzNumber": 123456782,
+	  "address": {
+		"city": "Ramat Gan",
+		"street": "haRoe",
+		"house": 31,
+		"zip": 14234
+	  },
+	  "packages": [
+		{
+		  "name": "Yahalom",
+		  "isActive": true,
+		  "start": "2020-08-01T18:09:03.187Z",
+		  "end": null
+		},
+		{
+		  "name": "Silver",
+		  "isActive": false,
+		  "start": "2022-03-01T18:09:03.187Z",
+		  "end": "2022-06-01T18:09:03.187Z"
+		}
+	  ]
+	},
+	{
+	  "name": "Zoya Karaso",
+	  "tzNumber": 586940397,
+	  "address": {
+		"city": "Yokneam",
+		"street": "haGiborim",
+		"house": 14,
+		"zip": 87495
+	  },
+	  "packages": [
+		{
+		  "name": "Sapir",
+		  "isActive": true,
+		  "start": "2020-04-01T18:09:03.187Z",
+		  "end": "2022-08-01T18:09:03.187Z"
+		},
+		{
+		  "name": "Yishfe",
+		  "isActive": true,
+		  "start": "2019-05-01T18:09:03.187Z",
+		  "end": "2022-08-01T18:09:03.187Z"
+		}
+	  ]
+	},
+	{
+	  "name": "Maya Sharabi",
+	  "tzNumber": 930483698,
+	  "address": {
+		"city": "Beit haShita",
+		"street": "Zabotinsky",
+		"house": 1,
+		"zip": 796672
+	  },
+	  "packages": [
+		{
+		  "name": "Gold",
+		  "isActive": true,
+		  "start": "2020-04-01T18:09:03.187Z",
+		  "end": "2022-08-01T18:09:03.187Z"
+		},
+		{
+		  "name": "Platinum",
+		  "isActive": true,
+		  "start": "2019-05-01T18:09:03.187Z",
+		  "end": "2022-08-01T18:09:03.187Z"
+		}
+	  ]
+	}
+]
