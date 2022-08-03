@@ -6,13 +6,18 @@
     <h4 class="card-header">Management Test System with Angular 10 JWT - Elisha Lipkin</h4>
     <div class="card-body">
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="tzNumber">Israel Passport ID</label>
-          <input type="number" min="0" formControlName="tzNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tzNumber.errors }" />
-          <div *ngIf="submitted && f.tzNumber.errors" class="invalid-feedback">
-            <div *ngIf="f.tzNumber.errors.required">Username is required</div>
-          </div>
-        </div>
+        
+        <mat-form-field class="example-form-field" appearance="fill">
+          <mat-label>Israel Passport ID</mat-label>
+          <input matInput formControlName="tzNumber" type="number" [(ngModel)]="tzInput">
+          <button *ngIf="tzInput" matSuffix mat-icon-button aria-label="Clear" (click)="tzInput=0">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="loginForm.controls.tzNumber.touched && loginForm.controls.tzNumber.invalid">
+            <span *ngIf="loginForm.controls.tzNumber.errors.required">This field is mandatory.</span>
+            <span *ngIf="loginForm.controls.tzNumber.errors.pattern">This field is invalid.</span>
+          </mat-error>
+        </mat-form-field>
         <button [disabled]="loading" class="btn btn-primary">
           <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
           Login

@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   error = '';
+  tzInput = 0;
 
   constructor(
     private formBuilder: FormBuilder,
