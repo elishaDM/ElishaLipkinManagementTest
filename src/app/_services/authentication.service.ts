@@ -26,8 +26,7 @@ export class AuthenticationService {
     //console.log(editedUser.address.city);
     //console.log(editedUser.address.street);
     //console.log(editedUser.address.house);
-    //console.log(editedUser.address.zip
-    );
+    //console.log(editedUser.address.zip);
 
     debugger
     this.http.put<any>(`${environment.apiUrl}/users/update`, {
