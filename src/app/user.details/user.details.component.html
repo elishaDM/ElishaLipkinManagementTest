@@ -9,7 +9,7 @@
       <button mat-button (click)="onEdit()">EDIT</button>
     </mat-card-actions>
   </mat-card>
-  <mat-card class="edit-dard collapsible" [@editCollapsed]="editCollapsed" *ngIf="!editCollapsed">
+  <mat-card class="edit-dard collapsible" [@editCollapsed]="editCollapsed" >
     <mat-card-title>Edit {{user.name}}s personal data</mat-card-title>
     <mat-card-content>
       <form [formGroup]="editForm" (ngSubmit)="onSubmitEdit()">
@@ -68,7 +68,7 @@
       </form>
     </mat-card-content>
   </mat-card>
-  <mat-divider></mat-divider>
+
   <mat-card class="header-card">
     <mat-card-subtitle>Packages</mat-card-subtitle>
     <mat-card-content *ngFor="let package of user.packages">
