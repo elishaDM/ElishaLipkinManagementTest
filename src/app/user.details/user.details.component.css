@@ -1,0 +1,12 @@
+.flex-container-main{
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.mat-card-subtitle{
+    font-weight:bold;
+}
+
+.collapsible {
+  overflow: hidden;
+}

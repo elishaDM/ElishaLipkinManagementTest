@@ -1,0 +1,27 @@
+<div class="col-md-6 offset-md-3 mt-5">
+  <div class="card">
+    <h1 class="card-header">Management Test System with Angular 10 JWT - Elisha Lipkin</h1>
+    <div class="alert alert-info">
+      <h3>Try login with any of those tz:</h3><br />
+      <span *ngFor="let tz of tzList"> {{ tz }}, </span>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+        <mat-form-field class="example-form-field" appearance="fill">
+          <mat-label>Israel Passport ID</mat-label>
+          <input matInput formControlName="tzNumber" type="number" [(ngModel)]="tzInput">
+          <button *ngIf="tzInput" matSuffix mat-icon-button aria-label="Clear" (click)="tzInput=''">
+            <mat-icon>X</mat-icon>
+          </button>
+          <mat-error *ngIf="loginForm.controls.tzNumber.touched && loginForm.controls.tzNumber.invalid">
+            <span *ngIf="loginForm.controls.tzNumber.errors.required">This field is mandatory.</span>
+            <span *ngIf="loginForm.controls.tzNumber.errors.pattern">This field is invalid.</span>
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" [disabled]="loading">LogIn</button>
+        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+      </form>
+    </div>
+  </div>
+</div>
