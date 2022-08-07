@@ -41,13 +41,13 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    console.log(this.isIsraeliIdNumber(this.f.tzNumber.value));
+    //console.log(this.isIsraeliIdNumber(this.f.tzNumber.value));
     // stop here if form is invalid
     if (this.loginForm.invalid) {
-      console.log("The form is Invalid")
+      //console.log("The form is Invalid")
       return;
     }
-    console.log("The form is VALID")
+    //console.log("The form is VALID")
     this.loading = true;
     this.authenticationService.login(this.f.tzNumber.value)
       .pipe(first())
@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
   forbiddenTzValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const forbidden = !this.isIsraeliIdNumber(control.value);
-      console.log("try validate")
+      //console.log("try validate")
       return forbidden ? { forbiddenTz: { value: control.value } } : null;
     };
   }

@@ -64,12 +64,12 @@ export class UserDetailsComponent implements OnInit {
 
   onSubmitEdit() {
     if (this.editForm.invalid) {
-      console.log("The edit form is Invalid")
+      //console.log("The edit form is Invalid")
       return;
     }
     this.editCollapsed = true;
     debugger
-    console.log(this.editCity)
+    //console.log(this.editCity)
     this.authenticationService.currentUserValue = {
       ...this.user, address: { city: this.editCity, street: this.editStreet, house: this.editHouse, zip: this.editZip }
     }

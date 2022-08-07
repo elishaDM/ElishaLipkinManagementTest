@@ -22,11 +22,11 @@ export class AuthenticationService {
 
   public set currentUserValue(editedUser: User) {
     //console.dir(editedUser);
-    console.log(editedUser.tzNumber);
-    console.log(editedUser.address.city);
-    console.log(editedUser.address.street);
-    console.log(editedUser.address.house);
-    console.log(editedUser.address.zip
+    //console.log(editedUser.tzNumber);
+    //console.log(editedUser.address.city);
+    //console.log(editedUser.address.street);
+    //console.log(editedUser.address.house);
+    //console.log(editedUser.address.zip
     );
 
     debugger
