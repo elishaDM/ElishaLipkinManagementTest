@@ -18,9 +18,9 @@ export class AppComponent {
     private authenticationService: AuthenticationService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
 
-    http.get<WeatherForecast[]>('weatherforecast').subscribe(result => {
-      this.forecasts = result;
-    }, error => console.error(error));
+    //http.get<WeatherForecast[]>('weatherforecast').subscribe(result => {
+    //  this.forecasts = result;
+    //}, error => console.error(error));
   }
 
   logout() {

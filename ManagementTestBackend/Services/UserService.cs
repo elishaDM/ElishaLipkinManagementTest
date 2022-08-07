@@ -12,7 +12,8 @@ using ManagementTestBackend.Models;
 public interface IUserService
 {
   AuthenticateResponse Authenticate(AuthenticateRequest model);
-  IEnumerable<User> GetAll();
+  AuthenticateResponse UpdateAddress(UpdateAddressRequest model);
+  List<int> GetUsersTz();
   User GetById(int id);
 }
 
@@ -27,12 +28,15 @@ public class UserService : IUserService
     };
   
   private readonly AppSettings _appSettings;
+  private readonly List<int> _usersTz;
 
   public UserService(IOptions<AppSettings> appSettings, IReadWriteDataService readWriteDataService)
   {
     _appSettings = appSettings.Value;
     _dataService = readWriteDataService;
     _customersData = _dataService.GetCustomersData();
+    _usersTz = new List<int>();
+    _customersData.ForEach(u => _usersTz.Add(u.TzNumber));
 }
 
   public AuthenticateResponse Authenticate(AuthenticateRequest model)
@@ -48,9 +52,35 @@ public class UserService : IUserService
     return new AuthenticateResponse(user, token);
   }
 
-  public IEnumerable<User> GetAll()
+  public AuthenticateResponse UpdateAddress(UpdateAddressRequest model)
   {
-    return _users;
+    var user = _customersData.FirstOrDefault(x => x.TzNumber == model.TzNumber);
+    user.Address = new Address()
+    {
+      City = model.City,
+      Street = model.Street,
+      House = model.House,
+      Zip =  model.Zip
+    };
+    int editedIndex = _customersData.FindIndex(u => u.TzNumber == model.TzNumber);
+    _customersData[editedIndex] = user;
+    try
+    {
+      _dataService.SaveData(_customersData);
+      var token = generateJwtToken(user);
+
+      return new AuthenticateResponse(user, token);
+    }
+    catch(Exception ex)
+    {
+      throw new Exception(ex.Message);
+    }
+
+  }
+
+  public List<int> GetUsersTz()
+  {
+    return this._usersTz;
   }
 
   public User? GetById(int tzNumber)

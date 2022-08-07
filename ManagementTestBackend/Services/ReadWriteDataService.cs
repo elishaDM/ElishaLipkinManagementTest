@@ -8,6 +8,7 @@ namespace ManagementTestBackend.Services
   public interface IReadWriteDataService
   {
     List<CustomerData> GetCustomersData();
+    void SaveData(List<CustomerData> data);
   }
   public class ReadWriteDataService : IReadWriteDataService
   {
@@ -28,6 +29,16 @@ namespace ManagementTestBackend.Services
         string json = r.ReadToEnd();
         List<CustomerData>? items = JsonConvert.DeserializeObject<List<CustomerData>>(json);
         return items == null? new List<CustomerData>() : items;
+      }
+    }
+
+    public void SaveData(List<CustomerData> data)
+    {
+      string fileName = _appSettings.JsonFile;
+      using (StreamWriter w = new StreamWriter(fileName))
+      {
+        JsonSerializer serializer = new JsonSerializer();
+        serializer.Serialize(w, data);
       }
     }
   }

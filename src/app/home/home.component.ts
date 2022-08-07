@@ -7,15 +7,15 @@ import { UserService } from '@app/_services/user.service';
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent {
   loading = false;
-  users: User[];
+  users: number[];
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.loading = true;
-    this.userService.getAll().pipe(first()).subscribe(users => {
-      this.loading = false;
-      this.users = users;
-    });
+    this.loading = false;
+    //this.userService.getAllTz().pipe().subscribe(users => {
+    //  this.loading = false;
+    //  this.users = users;
+    //});
   }
 }

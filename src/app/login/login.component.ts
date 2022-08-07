@@ -4,6 +4,7 @@ import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, ValidationErrors
 import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '@app/_services/authentication.service';
+import { UserService } from '../_services/user.service';
 
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
@@ -11,17 +12,19 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   error = '';
-  tzInput = 0;
+  tzInput = '';
+  tzList: number[] = [];
 
   constructor(
     private formBuilder: UntypedFormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private userService: UserService
   ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
+      this.router.navigate(['user-details']);
     }
   }
 
@@ -29,6 +32,8 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       tzNumber: ['', [Validators.required, this.forbiddenTzValidator()]]
     });
+    this.userService.getAllTz().subscribe(
+      tzList => { this.tzList = tzList });
   }
 
   // convenience getter for easy access to form fields
@@ -50,7 +55,7 @@ export class LoginComponent implements OnInit {
         next: () => {
           // get return url from route parameters or default to '/'
           //const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-          this.router.navigate(['consumerInfo']);
+          this.router.navigate(['user-details']);
         },
         error: error => {
           this.error = error;

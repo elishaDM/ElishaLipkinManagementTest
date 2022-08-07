@@ -28,11 +28,17 @@ namespace ManagementTestBackend.Controllers
     }
 
     [Authorize]
-    [HttpGet]
-    public IActionResult GetAll()
+    [HttpPut("update")]
+    public IActionResult Update(UpdateAddressRequest model)
     {
-      var users = _userService.GetAll();
+      var users = _userService.UpdateAddress(model);
       return Ok(users);
+    }
+
+    [HttpGet("allTz")]
+    public IActionResult AllTz()
+    {
+      return Ok(_userService.GetUsersTz());
     }
   }
 }

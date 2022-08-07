@@ -1,0 +1,79 @@
+<div class="flex-container-main">
+  <mat-card class="header-card">
+    <mat-card-title>{{user.name}}</mat-card-title>
+    <mat-card-content>
+      <p>Address: {{user.address.street}} {{ user.address.house}}, {{ user.address.city }}</p>
+      <p>ZIP: {{ user.address.zip}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="onEdit()">EDIT</button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card class="edit-dard collapsible" [@editCollapsed]="editCollapsed" *ngIf="!editCollapsed">
+    <mat-card-title>Edit {{user.name}}s personal data</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="editForm" (ngSubmit)="onSubmitEdit()">
+        <div>
+          <mat-form-field class="text-form-field" appearance="fill">
+            <mat-label>City</mat-label>
+            <input matInput formControlName="editCity" type="text" [(ngModel)]="editCity">
+            <button *ngIf="editCity" matSuffix mat-icon-button aria-label="Clear" (click)="editCity=''">
+              <mat-icon>X</mat-icon>
+            </button>
+            <mat-error *ngIf="editForm.controls.editCity.touched && editForm.controls.editCity.invalid">
+              <span *ngIf="editForm.controls.editCity.errors.required">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="text-form-field" appearance="fill">
+            <mat-label>Street</mat-label>
+            <input matInput formControlName="editStreet" type="text" [(ngModel)]="editStreet">
+            <button *ngIf="editStreet" matSuffix mat-icon-button aria-label="Clear" (click)="editStreet=''">
+              <mat-icon>X</mat-icon>
+            </button>
+            <mat-error *ngIf="editForm.controls.editStreet.touched && editForm.controls.editStreet.invalid">
+              <span *ngIf="editForm.controls.editStreet.errors.required">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="text-form-field" appearance="fill">
+            <mat-label>House</mat-label>
+            <input matInput formControlName="editHouse" type="number" [(ngModel)]="editHouse">
+            <button *ngIf="editHouse" matSuffix mat-icon-button aria-label="Clear" (click)="editHouse=''">
+              <mat-icon>X</mat-icon>
+            </button>
+            <mat-error *ngIf="editForm.controls.editHouse.touched && editForm.controls.editHouse.invalid">
+              <span *ngIf="editForm.controls.editHouse.errors.required">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="text-form-field" appearance="fill">
+            <mat-label>ZIP</mat-label>
+            <input matInput formControlName="editZip" type="number" [(ngModel)]="editZip">
+            <button *ngIf="editHouse" matSuffix mat-icon-button aria-label="Clear" (click)="editZip=''">
+              <mat-icon>X</mat-icon>
+            </button>
+            <mat-error *ngIf="editForm.controls.editZip.touched && editForm.controls.editZip.invalid">
+              <span *ngIf="editForm.controls.editZip.errors.required">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-raised-button color="primary">Save</button>
+          <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <mat-divider></mat-divider>
+  <mat-card class="header-card">
+    <mat-card-subtitle>Packages</mat-card-subtitle>
+    <mat-card-content *ngFor="let package of user.packages">
+      <p>{{ package.name }}   {{package.start | date}}- {{package.end | date}}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
